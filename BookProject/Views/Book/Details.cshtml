@@ -1,0 +1,64 @@
+﻿@model SharedLibrary.Models.BookModel;
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div class="Container">
+    <div class="row">
+       <div class="col-6 offset-3 border border-primary rounded">
+            <br />
+            <div class="text-center">
+                <h3 class="text-info"> Book Details</h3>
+            </div>
+               <br/>
+            <hr />
+        <dl class="row">
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.BookId)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.BookId)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.BookName)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.BookName)
+        </dd>
+        <dt class = "col-sm-4">
+                    @Html.DisplayNameFor(model => model.CategoryName)
+        </dt>
+        <dd class = "col-sm-8">
+                    @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.Author)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.Publisher)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.Publisher)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        </dl>
+            <div class="text-left">
+                <a class="text-primary" asp-action="Edit" asp-route-id="@Model?.BookId"> <button class="btn btn-primary">Edit</button> </a> |
+                <a class="text-primary" asp-action="Index">Back to List</a>
+             </div>
+             <br/>
+    </div>
+ 
+   </div>
+
+</div>

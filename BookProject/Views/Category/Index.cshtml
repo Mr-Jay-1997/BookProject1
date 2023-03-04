@@ -1,0 +1,64 @@
+﻿@using SharedLibrary.Models;
+@model IEnumerable<SharedLibrary.Models.CategoryModel>
+
+@{
+    ViewData["Title"] = "Index";
+
+    var success = TempData["success"] as string;
+    var error = TempData["error"] as string;
+}
+
+@if (!string.IsNullOrEmpty(error))
+{
+    <h6 class="alert-danger text-center p-2">@error</h6>
+}
+else
+{
+    <h6 class="alert-success text-center p-2">@success</h6>
+}
+
+<button type="button" asp-action="Create" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createPartial">
+  Create Category
+</button>
+@await Html.PartialAsync("_CreatePartialView", new CategoryModel())
+<br/>
+
+
+<table id="myTable2" class="table table-bordered table-hover table-sm">
+    <thead>
+        <tr>
+            <th type="hidden">
+                @Html.DisplayNameFor(model => model.CategoryId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </th>
+            
+            <th data-sortable="false" width="500px"> Operations</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            
+            <td>
+                    <button type="button" asp-action="Edit" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="@("#editPartial-" +item.CategoryId)" data-url="@Url.Action($"Edit/{item.CategoryId}")"> Edit </button> 
+                    @await Html.PartialAsync("_EditPartialView",item)  |
+
+                    <button type="button" asp-action="Delete" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="@("#deletePartial-" +item.CategoryId)" data-url="@Url.Action($"Delete/{item.CategoryId}")"> Delete </button> 
+                    @await Html.PartialAsync("_DeletePartialView",item)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+
+
+

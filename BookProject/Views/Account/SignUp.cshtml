@@ -1,0 +1,95 @@
+﻿    @model BookProject.Models.SignUpViewModel;
+
+
+@{
+    ViewData["Title"] = "SignUp";
+    
+}   
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3 border border-primary rounded">
+            <div class="text-center">
+                <h1 class="text-info">User Registration</h1>
+            </div>
+            <h3 class="text-danger text=center">@TempData["errorMessage"]</h3>
+            <form method="post" asp-action="SignUp" >
+                <div class="form-group">
+                <label asp-for="FirstName"></label>
+                <input type="text" asp-for="FirstName" placeholder="Enter your First Name" class="form-control" autocomplete="off" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <br/>
+
+                <div class="form-group">
+                <label asp-for="LastName"></label>
+                <input type="text" asp-for="LastName" placeholder="Enter your Last Name" class="form-control" autocomplete="off" />
+                </div>
+                <br/>
+
+                <div class="form-group">
+                <label asp-for="Email"></label>
+                <input type="text" asp-for="Email" placeholder="Enter your Email" class="form-control" autocomplete="off" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <br/>
+
+                <div class="form-group">
+                <label asp-for="Password"></label>
+                <input type="password" asp-for="Password" placeholder="Enter your Password" class="form-control" autocomplete="off" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+                <i class="bi bi-eye" class="cursor:pointer"></i>
+                </div>
+                <br/>
+
+                <div class="form-group">
+                <label asp-for="ConfirmPassword"></label>
+                <input type="password" asp-for="ConfirmPassword" placeholder="Enter your Password" class="form-control" autocomplete="off" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                <i class="bi bi-eye" class="cursor:pointer"></i>
+                </div>
+                <br/>
+
+                <div class="form-group">
+                <label asp-for="Mobile"></label>
+                <input type="text" asp-for="Mobile" placeholder="Enter your Mobile Number" class="form-control" autocomplete="off" />
+                </div>
+                <br/>
+
+                <div class="form-group">
+                <input type="submit" value="Register" class="btn btn-primary" />
+            </div>
+
+            <div class="text-center">
+                <a class="text-primary" asp-action="Login">Already have an account?</a>
+            </div>
+            <br/>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+@section Scripts{
+    <script type="text/javascript">
+
+        function openSuccessModal(strMessage)
+        {
+            var myDiv=document.getElementById("MyModalSuccessAlertBody");
+            myDiv.innerHTML=strMessage;
+            $('#myModalSuccess').modal('show');
+        }
+
+
+        $(document).ready(function()
+        {
+            var msg="@TempData["SuccessMessage"]";
+            if(msg)
+            openSuccessModal(msg);
+        });
+    </script>
+}

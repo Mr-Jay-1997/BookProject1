@@ -1,0 +1,68 @@
+﻿@model BookProject.Models.LoginViewModel;
+
+
+@{
+    ViewData["Title"] = "Login";
+    
+}   
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3 border border-primary rounded pr-5 pr-5 pb-5">
+            <div class="text-center">
+                <h1 class="text-info">User Login</h1>
+            </div>
+            <form method="post" asp-action="Login" >
+                
+                <div class="form-group">
+                <label asp-for="Email"> </label>
+                <input type="text" asp-for="Email" placeholder="Enter your Email" class="form-control" autocomplete="off" />
+                <span class="text-danger"> @TempData["errorEmail"]</span>
+                </div>
+
+                <br/>
+
+                <div class="form-group">
+                <label asp-for="Password"></label>
+                <input type="password" asp-for="Password" placeholder="Enter your Password" class="form-control" autocomplete="off" />
+                <i class="bi bi-eye" class="cursor:pointer"></i>
+                <span class="text-danger text=center">@TempData["errorPassword"]</span>
+                </div>
+                
+              
+                <br/>
+
+                <div class="form-group">
+                <input type="submit" class="btn btn-block btn-primary mb-2" value="Login"  />
+            </div>
+          
+            <div class="text-center">
+                <label>Don't have an account?</label>
+                <a class="text-primary" asp-action="SignUp">Register</a>
+            </div>
+            <br/>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts{
+        <script type="text/javascript">
+
+            function openSuccessModal(strMessage)
+            {
+                var myDiv=document.getElementById("MyModalSuccessAlertBody");
+                myDiv.innerHTML=strMessage;
+                $('#myModalSuccess').modal('show');
+            }
+
+
+            $(document).ready(function()
+            {
+                var msg="@TempData["SuccessMessage"]";
+                if(msg)
+                openSuccessModal(msg);
+            });
+        </script>
+}
